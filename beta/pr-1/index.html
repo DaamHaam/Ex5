@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1f2937" />
+    <title>Score Belgique vs France</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Score Belgique vs France</h1>
+      <p class="subtitle">Suivi des points pour Eliott, Timéo et Lilouan</p>
+    </header>
+
+    <main class="app-main">
+      <section class="players" id="players"></section>
+
+      <section class="history">
+        <div class="history-header">
+          <h2>Historique des points</h2>
+          <button id="undo-btn" class="secondary" type="button" aria-live="polite">
+            Annuler le dernier coup
+          </button>
+        </div>
+        <p id="history-empty" class="empty">Aucune action pour le moment.</p>
+        <ol id="history-list" class="history-list" aria-live="polite"></ol>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p id="status" role="status" aria-live="polite">Initialisation…</p>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
